@@ -1,0 +1,19 @@
+#table{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+tr {
+    border: 1px solid black;
+}
+
+.book-form{
+    display: none;
+}
+.book-form.enabled{
+    display:block;
+}
+
+td {
+    padding: 0 1rem 0 1rem;
+}
