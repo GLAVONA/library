@@ -12,16 +12,16 @@
     <div id="container">
         <table id="table"></table>
         <button id="new-book">NEW BOOK</button>
-        <form action="" class="book-form" id="book-form">
+        <form action="" class="book-form" id="book-form" onsubmit="addBookToLibrary()">
             <div class="header">Title:</div>
-            <input type="text" id="title-input">
+            <input type="text" id="title-input" required>
             <div class="header">Author:</div>
-            <input type="text" id="author-input">
+            <input type="text" id="author-input" required>
             <div class="header">Pages:</div>
             <input type="text" id="pages-input" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
             <div class="header">Read:</div>
             <input type="checkbox" id="checkbox-input">
-            <button id="submit">Submit</button>
+            <input type="submit" value="Submit">
         </form>
     </div>
     

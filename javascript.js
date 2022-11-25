@@ -123,7 +123,6 @@ newBookButton.addEventListener("click",()=>{
    form.reset();
 })
 
-submitButton.addEventListener("click",addBookToLibrary);
 
 
 
