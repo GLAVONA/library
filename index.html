@@ -18,7 +18,7 @@
             <div class="header">Author:</div>
             <input type="text" id="author-input">
             <div class="header">Pages:</div>
-            <input type="text" id="pages-input">
+            <input type="text" id="pages-input" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
             <div class="header">Read:</div>
             <input type="checkbox" id="checkbox-input">
             <button id="submit">Submit</button>

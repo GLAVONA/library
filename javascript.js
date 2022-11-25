@@ -7,12 +7,12 @@ let bookId = 0;
 
 const myLibrary = [];
 
-function Book(title, author, pages, read, id){
+function Book(title, author, pages, read, bookId){
    this.title = title;
    this.author = author;
    this.pages = pages;
    this.read = read;
-   this.id = id;
+   this.bookId = bookId;
 };
 
 Book.prototype.info = function() {
@@ -35,47 +35,50 @@ function addBookToLibrary(){
    myLibrary.push(newBook);
 
    event.preventDefault();
-   if( myLibrary.length===1){
-      createTableHeaders();
-      }
-   renderTable(newBook.title, newBook.author, newBook.pages, newBook.read, bookId);
+   populateTable();
    form.classList.remove("enabled")
 }
 
-function renderTable(title, author, pages, read, bookId){
-
-   let tr = document.createElement("tr");
-   tr.setAttribute("id",bookId);
-
-   let td1 = document.createElement("td");
-   td1.textContent = title;
-   tr.appendChild(td1);
+function populateTable(){
+   table.innerHTML='';
+   createTableHeaders();
+      
+myLibrary.forEach(book => {
+      let tr = document.createElement("tr");
+      tr.setAttribute("id",book.bookId);
    
-   let td2 = document.createElement("td");
-   td2.textContent = author;
-   tr.appendChild(td2);
+      let td1 = document.createElement("td");
+      td1.textContent = book.title;
+      tr.appendChild(td1);
+      
+      let td2 = document.createElement("td");
+      td2.textContent = book.author;
+      tr.appendChild(td2);
+      
+      let td3 = document.createElement("td");
+      td3.textContent = book.pages;
+      tr.appendChild(td3);
+      
+      let td4 = document.createElement("td");
+      let newCheckBox = document.createElement("input");
+      newCheckBox.type = "checkbox";
+      newCheckBox.checked = book.read;
+      td4.appendChild(newCheckBox);
+      tr.appendChild(td4);
+      
+      let td5 = document.createElement("td");
+      let btn = document.createElement("input")
+      btn.setAttribute("type","button");
+      btn.setAttribute("value","X");
+      btn.setAttribute("onclick","deleteRow(this, bookId)")
+      td5.appendChild(btn)
+      tr.appendChild(td5);
    
-   let td3 = document.createElement("td");
-   td3.textContent = pages;
-   tr.appendChild(td3);
-   
-   let td4 = document.createElement("td");
-   let newCheckBox = document.createElement("input");
-   newCheckBox.type = "checkbox";
-   newCheckBox.checked = read;
-   td4.appendChild(newCheckBox);
-   tr.appendChild(td4);
-   
-   let td5 = document.createElement("td");
-   let btn = document.createElement("input")
-   btn.setAttribute("type","button");
-   btn.setAttribute("value","X");
-   btn.setAttribute("onclick","deleteRow(this, bookId)")
-   td5.appendChild(btn)
-   tr.appendChild(td5);
-
-   table.appendChild(tr);
+      table.appendChild(tr);
+});
 }
+
+
 
 function deleteRow(row, bookId) {
    let i = row.parentNode.parentNode.rowIndex;
